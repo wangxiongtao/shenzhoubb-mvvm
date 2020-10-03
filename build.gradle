@@ -2,6 +2,8 @@
 buildscript {
     repositories {
         google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
         jcenter()
     }
     dependencies {
@@ -15,10 +17,32 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
         jcenter()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+
+ext {
+    versions = [
+            constraintlayout    : "2.0.1",
+            appcompat           : "1.2.0",
+            lifecycle_extensions: "2.2.0",
+            retrofit            : "2.9.0",
+            rxandroid           : "2.1.1"
+    ]
+    libs = [
+            constraintlayout       : "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}",
+            appcompat              : "androidx.appcompat:appcompat:${versions.appcompat}",
+            lifecycle_extensions   : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle_extensions}",
+            retrofit               : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            retrofit_rxjava_adapter: "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+            rxandroid              : "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}",
+            material               : "com.google.android.material:material:1.2.1",
+    ]
 }
