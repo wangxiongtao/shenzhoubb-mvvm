@@ -9,6 +9,7 @@ import com.dawn.shenzhoubb_mvvm.R;
 import com.dawn.shenzhoubb_mvvm.databinding.FragmentHomeLayoutBinding;
 
 public class HomeFragment extends BaseFragment<FragmentHomeLayoutBinding,HomeVm> {
+    private MarketFragment marketFragment;
     public static HomeFragment newInstance() {
         
         Bundle args = new Bundle();
@@ -25,11 +26,16 @@ public class HomeFragment extends BaseFragment<FragmentHomeLayoutBinding,HomeVm>
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        FragmentUtil.replaceFragment(getChildFragmentManager(),MarketFragment.newInstance(),R.id.container_fl);
+        marketFragment=MarketFragment.newInstance();
+        FragmentUtil.replaceFragment(getChildFragmentManager(),marketFragment,R.id.container_fl);
+    }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        marketFragment.onHiddenChanged(hidden);
 
 
     }
-
     @Override
     public int initVariableId() {
         return BR.homeVm;

@@ -23,13 +23,20 @@ public abstract class BaseActivity<VDB extends ViewDataBinding,VM extends BaseVi
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        StatusBarUtil.setStatusBarColor(this, Color.parseColor("#FF6600"));
+        setStatusBarColor();
         super.onCreate(savedInstanceState);
         handlerVDB();
         handlerVM();
         progressDialog = new ProgressDialog(this);
         receiveLiveData();
         initData(savedInstanceState);
+    }
+    /**
+     * 第一次进入页面子类可以重写
+     * 这个方法修改状态栏
+     */
+    protected void setStatusBarColor(){
+        StatusBarUtil.setStatusBarColor(this, Color.parseColor("#FFFFFF"));
     }
 
 
@@ -73,6 +80,9 @@ public abstract class BaseActivity<VDB extends ViewDataBinding,VM extends BaseVi
             Intent intent=new Intent(this,cls);
             intent.putExtras(extras);
             startActivity(intent);
+
+        });
+        viewModel.apiExceptionEvent.observe(this, e->{
 
         });
     }

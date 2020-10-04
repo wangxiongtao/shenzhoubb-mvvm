@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.dawn.lib_common.base.BaseActivity;
 import com.dawn.lib_common.util.FragmentUtil;
+import com.dawn.lib_common.util.StatusBarUtil;
 import com.dawn.shenzhoubb_mvvm.databinding.ActivityMainBinding;
 
 import androidx.lifecycle.Observer;
@@ -13,6 +14,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainVm> {
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void setStatusBarColor() {
+        StatusBarUtil.setContentToStatusBar(this);
     }
 
     @Override

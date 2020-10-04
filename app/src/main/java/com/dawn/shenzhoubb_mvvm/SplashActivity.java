@@ -17,10 +17,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setLightStatusBar(this,true);
-        Observable.timer(2, TimeUnit.SECONDS).subscribe(new RxLifeObserver<Long>(this){
+        Observable.timer(1, TimeUnit.SECONDS).subscribe(new RxLifeObserver<Long>(this) {
             @Override
             public void onNext(Long aLong) {
-                super.onNext(aLong);
                 Intent intent=new Intent(SplashActivity.this,MainActivity.class);
                 startActivity(intent);
             }

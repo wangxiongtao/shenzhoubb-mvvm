@@ -6,10 +6,15 @@ import com.dawn.lib_common.base.BaseFragment;
 import com.dawn.shenzhoubb_mvvm.BR;
 import com.dawn.shenzhoubb_mvvm.R;
 import com.dawn.shenzhoubb_mvvm.databinding.FragmentMarketBinding;
+import com.dawn.shenzhoubb_mvvm.dialog.MyDialog;
+
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 
 public class MarketFragment extends BaseFragment<FragmentMarketBinding,MarketVm> {
 
+    private HomeVm homeVm;
     public static MarketFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -26,6 +31,33 @@ public class MarketFragment extends BaseFragment<FragmentMarketBinding,MarketVm>
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        homeVm=new ViewModelProvider(requireParentFragment()).get(HomeVm.class);
+        getViewModel().statusBarColor.observe(this, color -> {
+            homeVm.statusBarColor.postValue(color);
+
+        });
+        getViewModel().showDialog.observe(this, new Observer<Object>() {
+
+            @Override
+            public void onChanged(Object o) {
+                MyDialog dialog=new MyDialog(requireActivity());
+                dialog.setTitle("title");
+                dialog.show();
+
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            getViewDataBinding().banner.stop();
+        }else {
+            getViewDataBinding().banner.start();
+        }
 
     }
 

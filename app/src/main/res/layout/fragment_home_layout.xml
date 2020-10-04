@@ -13,7 +13,14 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
+        <com.githang.statusbar.StatusBarView
+            android:background="@{homeVm.statusBarColor}"
+            android:id="@+id/status_bar_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tootBar"
+            android:background="@{homeVm.statusBarColor}"
             app:title="首页"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

@@ -1,6 +1,7 @@
 package com.dawn.lib_common.base;
 
 
+import com.dawn.lib_common.http.APIException;
 import com.dawn.lib_common.util.LogUtil;
 
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import io.reactivex.disposables.Disposable;
 public class BaseViewModel extends LifeViewModel implements IDisposable,IViewModel {
     private CompositeDisposable disposable;
     public MutableLiveData<Boolean> loadingEvent=new MutableLiveData<>();
+    public MutableLiveData<APIException> apiExceptionEvent=new MutableLiveData<>();
     public MutableLiveData<HashMap<String,Object>> startActivity=new MutableLiveData<>();
 
 

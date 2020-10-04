@@ -3,29 +3,81 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".home.MarketFragment">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]外链图片转存中…(img-Cpfgrgm7-1567999875484)]"
+                android:textSize="30sp" />
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->marketVm.add()}" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@{marketVm.statusBarColor}" />
+
+                    <com.youth.banner.Banner
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="115dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        app:bannerAdapter="@{marketVm.bannerAdapter}"
+                        app:bannerChangeListener="@{marketVm.pageChangeListener}"
+                        app:bannerList="@{marketVm.bannerList}"
+                        app:bannerListener="@{marketVm.bannerListener}"
+                        app:layout_scrollFlags="scroll" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorAccent" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <data>
+
         <variable
             name="marketVm"
             type="com.dawn.shenzhoubb_mvvm.home.MarketVm" />
 
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        tools:context=".home.MarketFragment">
-        <Button
-            android:layout_width="match_parent"
-            android:onClick="@{()->marketVm.add()}"
-            android:layout_height="wrap_content"/>
-        <com.youth.banner.Banner
-            android:id="@+id/banner"
-            app:bannerAdapter="@{marketVm.bannerAdapter}"
-            app:bannerList="@{marketVm.bannerList}"
-            android:layout_width="match_parent"
-            android:layout_height="115dp" />
 
-
-    </LinearLayout>
 </layout>

@@ -23,5 +23,6 @@ public class OrderFragment extends BaseFragment {
     @Override
     public void initData(Bundle savedInstanceState) {
 
+
     }
 }

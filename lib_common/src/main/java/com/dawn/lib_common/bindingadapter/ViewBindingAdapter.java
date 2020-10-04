@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerAdapter;
 import com.youth.banner.indicator.CircleIndicator;
+import com.youth.banner.listener.OnBannerListener;
+import com.youth.banner.listener.OnPageChangeListener;
 
 import java.util.List;
 
@@ -36,18 +38,19 @@ public class ViewBindingAdapter {
         GlideApp.with(imageView.getContext()).load(imageUrl).placeholder(imageView.getDrawable()).error(imageView.getDrawable()).into(imageView);
 
     }
-    @BindingAdapter("bannerAdapter")
-    public static <T,BA extends BannerAdapter<T,VH>,VH extends RecyclerView.ViewHolder>void setBannerAdapter(Banner<T,BA> banner, BA adapter){
+    @BindingAdapter(value = {"bannerAdapter","bannerListener","bannerChangeListener"},requireAll = false)
+    public static <T,BA extends BannerAdapter<T,VH>,VH extends RecyclerView.ViewHolder>void setBannerAdapter(Banner<T,BA> banner, BA adapter, OnBannerListener<T>listener, OnPageChangeListener pageChangeListener){
         Context context=banner.getContext();
         if(context instanceof LifecycleOwner){
             banner.addBannerLifecycleObserver((LifecycleOwner) banner.getContext());
         }
         banner.setIndicator(new CircleIndicator(banner.getContext()));
         banner.setAdapter(adapter);
+        banner.setOnBannerListener(listener);
+        banner.addOnPageChangeListener(pageChangeListener);
     }
     @BindingAdapter("bannerList")
     public static <T,BA extends BannerAdapter<T,VH>,VH extends RecyclerView.ViewHolder>void setBannerList(Banner<T,BA> banner, List<T> list){
         banner.setDatas(list);
     }
-
 }
